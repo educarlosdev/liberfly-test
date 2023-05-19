@@ -200,13 +200,13 @@ class CategoryController extends Controller
      *    response=200,
      *    description="Ok",
      *    @OA\JsonContent(
-     *       @OA\Property(property="id", type="string", example="bccddf99-6447-4a18-82a3-720551a4a28a"),
-     *       @OA\Property(property="user_id", type="string", example="aaaddf99-6447-4a48-82a3-720tt1a4a28a"),
-     *       @OA\Property(property="name", type="string", example="MyCategory"),
-     *       @OA\Property(property="created_at", type="string", example="2023-05-19 18:59:18"),
-     *       @OA\Property(property="updated_at", type="string", example="2023-05-19 18:59:18"),
-     *        )
-     *     )
+     *      @OA\Property(property="id", type="string", example="bccddf99-6447-4a18-82a3-720551a4a28a"),
+     *      @OA\Property(property="user_id", type="string", example="aaaddf99-6447-4a48-82a3-720tt1a4a28a"),
+     *      @OA\Property(property="name", type="string", example="MyCategory"),
+     *      @OA\Property(property="created_at", type="string", example="2023-05-19 18:59:18"),
+     *      @OA\Property(property="updated_at", type="string", example="2023-05-19 18:59:18"),
+     *      )
+     *   )
      * )
      */
     public function update(Request $request, Category $category)
@@ -242,7 +242,7 @@ class CategoryController extends Controller
      * @OA\Response(
      *    response=204,
      *    description="No content",
-     *     )
+     * )
      * )
      */
     public function destroy(Category $category)
