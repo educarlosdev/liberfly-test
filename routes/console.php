@@ -18,5 +18,6 @@ Artisan::command('start', function () {
     Artisan::call('migrate');
     if (!\App\Models\User::query()->first()) {
         Artisan::call('migrate:fresh --seed');
+        Artisan::call('l5-swagger:generate');
     }
 })->purpose('Verifica se já tem algum dado semeado no banco e se não tiver roda o seed');
