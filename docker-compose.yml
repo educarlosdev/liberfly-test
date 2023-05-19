@@ -1,0 +1,42 @@
+version: "3.9"
+services:
+    api:
+        container_name: api
+        build:
+            context: .
+            dockerfile: dockerfile
+        command: >
+            sh -c "if [ ! -f ".env" ]; then cp .env.example .env ; fi &&
+                if [ ! -d "vendor" ]; then composer install --no-dev --no-cache --ignore-platform-reqs ; fi &&
+                cp .env.example .env &&
+                php artisan key:generate &&
+                php artisan start &&
+                php artisan octane:start --server=swoole --workers=1 --max-requests=250 --host=0.0.0.0 --port=8000"
+        ports:
+            - "8000:8000"
+        volumes:
+            - ./:/usr/src/api
+        networks:
+            - network
+        depends_on:
+            - mysql
+        links:
+            - mysql
+    mysql:
+        image: mysql:latest
+        restart: unless-stopped
+        tty: true
+        ports:
+            - "3306:3306"
+        environment:
+            - MYSQL_PASSWORD=YPH4xU28qSG3V3Fw060uXLCZVS220tBN
+            - MYSQL_ROOT_PASSWORD=YPH4xU28qSG3V3Fw060uXLCZVS220tBN
+            - MYSQL_DATABASE=liberfly
+        networks:
+            - network
+networks:
+    network:
+        driver: bridge
+
+#            sh -c "if [ ! -f ".env" ]; then cp .env.example .env ; fi &&
+#            tail -f /dev/null"
