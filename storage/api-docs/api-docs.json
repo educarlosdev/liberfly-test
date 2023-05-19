@@ -130,12 +130,378 @@
                     }
                 ]
             }
+        },
+        "/categories": {
+            "get": {
+                "tags": [
+                    "Category"
+                ],
+                "summary": "Get and search Categories",
+                "description": "Get Categories",
+                "operationId": "indexCategories",
+                "parameters": [
+                    {
+                        "name": "q",
+                        "in": "query",
+                        "description": "Buscar por Categoria",
+                        "required": false
+                    },
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "Trocar de pagina",
+                        "required": false
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Ok",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "page": {
+                                            "type": "int64",
+                                            "example": "1"
+                                        },
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "id": {
+                                                        "type": "string",
+                                                        "example": "bccddf99-6447-4a18-82a3-720551a4a28a"
+                                                    },
+                                                    "user_id": {
+                                                        "type": "string",
+                                                        "example": "aaaddf99-6447-4a48-82a3-720tt1a4a28a"
+                                                    },
+                                                    "name": {
+                                                        "type": "string",
+                                                        "example": "MyCategory"
+                                                    },
+                                                    "created_at": {
+                                                        "type": "string",
+                                                        "example": "2023-05-19 18:59:18"
+                                                    },
+                                                    "updated_at": {
+                                                        "type": "string",
+                                                        "example": "2023-05-19 18:59:18"
+                                                    }
+                                                },
+                                                "type": "object"
+                                            }
+                                        },
+                                        "first_page_url": {
+                                            "type": "string",
+                                            "example": "http://127.0.0.1:8001/api/categories?page=1"
+                                        },
+                                        "from": {
+                                            "type": "int64",
+                                            "example": "1"
+                                        },
+                                        "last_page": {
+                                            "type": "int64",
+                                            "example": "2"
+                                        },
+                                        "last_page_url": {
+                                            "type": "string",
+                                            "example": "http://127.0.0.1:8001/api/categories?page=1"
+                                        },
+                                        "links": {
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "url": {
+                                                        "type": "string",
+                                                        "example": "null"
+                                                    },
+                                                    "label": {
+                                                        "type": "string",
+                                                        "example": "pagination.previous"
+                                                    },
+                                                    "active": {
+                                                        "type": "boolean",
+                                                        "example": false
+                                                    }
+                                                },
+                                                "type": "object"
+                                            }
+                                        },
+                                        "next_page_url": {
+                                            "type": "string",
+                                            "example": "http://127.0.0.1:8001/api/categories?page=2"
+                                        },
+                                        "path": {
+                                            "type": "string",
+                                            "example": "http://127.0.0.1:8001/api/categories"
+                                        },
+                                        "per_page": {
+                                            "type": "int64",
+                                            "example": "10"
+                                        },
+                                        "prev_page_url": {
+                                            "type": "string",
+                                            "example": "null"
+                                        },
+                                        "to": {
+                                            "type": "int64",
+                                            "example": "10"
+                                        },
+                                        "total": {
+                                            "type": "int64",
+                                            "example": "11"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "Category"
+                ],
+                "summary": "Cadastrar uma categoria",
+                "description": "Cadastrar uma categoria",
+                "operationId": "storeCategory",
+                "requestBody": {
+                    "description": "Cadastrar uma categoria",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "name"
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "type": "string",
+                                        "format": "name",
+                                        "example": "categoria"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Ok",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "id": {
+                                            "type": "string",
+                                            "example": "bccddf99-6447-4a18-82a3-720551a4a28a"
+                                        },
+                                        "user_id": {
+                                            "type": "string",
+                                            "example": "aaaddf99-6447-4a48-82a3-720tt1a4a28a"
+                                        },
+                                        "name": {
+                                            "type": "string",
+                                            "example": "MyCategory"
+                                        },
+                                        "created_at": {
+                                            "type": "string",
+                                            "example": "2023-05-19 18:59:18"
+                                        },
+                                        "updated_at": {
+                                            "type": "string",
+                                            "example": "2023-05-19 18:59:18"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/categories/{id}": {
+            "get": {
+                "tags": [
+                    "Category"
+                ],
+                "summary": "Exibir uma categoria",
+                "description": "Exibir uma categoria",
+                "operationId": "showCategory",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "query",
+                        "description": "Buscar por id",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Ok",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "id": {
+                                            "type": "string",
+                                            "example": "bccddf99-6447-4a18-82a3-720551a4a28a"
+                                        },
+                                        "user_id": {
+                                            "type": "string",
+                                            "example": "aaaddf99-6447-4a48-82a3-720tt1a4a28a"
+                                        },
+                                        "name": {
+                                            "type": "string",
+                                            "example": "MyCategory"
+                                        },
+                                        "created_at": {
+                                            "type": "string",
+                                            "example": "2023-05-19 18:59:18"
+                                        },
+                                        "updated_at": {
+                                            "type": "string",
+                                            "example": "2023-05-19 18:59:18"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            },
+            "put": {
+                "tags": [
+                    "Category"
+                ],
+                "summary": "Editar uma categoria",
+                "description": "Editar uma categoria",
+                "operationId": "updateCategory",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "query",
+                        "description": "Buscar por id",
+                        "required": true
+                    }
+                ],
+                "requestBody": {
+                    "description": "Editar uma categoria",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "name"
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "type": "string",
+                                        "format": "name",
+                                        "example": "categoria"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Ok",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "id": {
+                                            "type": "string",
+                                            "example": "bccddf99-6447-4a18-82a3-720551a4a28a"
+                                        },
+                                        "user_id": {
+                                            "type": "string",
+                                            "example": "aaaddf99-6447-4a48-82a3-720tt1a4a28a"
+                                        },
+                                        "name": {
+                                            "type": "string",
+                                            "example": "MyCategory"
+                                        },
+                                        "created_at": {
+                                            "type": "string",
+                                            "example": "2023-05-19 18:59:18"
+                                        },
+                                        "updated_at": {
+                                            "type": "string",
+                                            "example": "2023-05-19 18:59:18"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "Category"
+                ],
+                "summary": "Deletar uma categoria",
+                "description": "Deletar uma categoria",
+                "operationId": "destroyCategory",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "query",
+                        "description": "Buscar por id",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "No content"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
         }
     },
     "tags": [
         {
             "name": "Auth",
             "description": "API Endpoints de Autenticação"
+        },
+        {
+            "name": "Category",
+            "description": "API Endpoints de Categorias"
         }
     ],
     "components": {

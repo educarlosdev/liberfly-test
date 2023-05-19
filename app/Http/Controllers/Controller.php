@@ -31,6 +31,12 @@ use OpenApi\Annotations as OA;
  *     name="Auth",
  *     description="API Endpoints de Autenticação"
  * )
+
+ *
+ * @OA\Tag(
+ *     name="Category",
+ *     description="API Endpoints de Categorias"
+ * )
  */
 
 class Controller extends BaseController
