@@ -10,7 +10,7 @@ services:
         ports:
             - "8000:9000"
         volumes:
-            - ./:/usr/src/api
+            - .:/var/www/html
         networks:
             - network
         depends_on:
