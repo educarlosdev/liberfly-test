@@ -23,9 +23,11 @@ RUN docker-php-ext-enable openswoole
 RUN docker-php-ext-enable xdebug
 RUN docker-php-ext-enable pdo_mysql
 
-COPY . .
+# install and enable zip
 RUN apt-get install -y libzip-dev
 RUN docker-php-ext-install zip
 RUN docker-php-ext-enable zip
+
+COPY . .
 # install dependencies
 RUN composer update
