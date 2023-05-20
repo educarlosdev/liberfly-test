@@ -15,9 +15,9 @@ use Illuminate\Support\Facades\Artisan;
 */
 
 Artisan::command('start', function () {
-    Artisan::call('migrate');
+    Artisan::call('migrate --force');
     if (!\App\Models\User::query()->first()) {
-        Artisan::call('migrate:fresh --seed');
+        Artisan::call('migrate:fresh --seed --force');
         Artisan::call('l5-swagger:generate');
     }
 })->purpose('Verifica se já tem algum dado semeado no banco e se não tiver roda o seed');
