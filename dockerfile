@@ -26,4 +26,4 @@ RUN docker-php-ext-enable pdo_mysql
 COPY . .
 
 # install dependencies
-RUN composer install --no-dev --no-cache --ignore-platform-reqs
+RUN composer update
