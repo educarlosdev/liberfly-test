@@ -7,7 +7,7 @@ services:
             dockerfile: dockerfile
         command: >
             sh -c "if [ ! -f ".env" ]; then cp .env.example .env ; fi &&
-                if [ ! -d "vendor" ]; then composer install --no-dev --no-cache --ignore-platform-reqs ; fi &&
+                if [ ! -d "vendor" ]; then composer update ; fi &&
                 cp .env.example .env &&
                 php artisan key:generate &&
                 php artisan start &&
