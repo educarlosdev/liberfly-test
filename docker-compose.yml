@@ -3,9 +3,7 @@ services:
     api:
         image: duureis/bemtevix:latest
         command: >
-            sh -c "cp .env.example .env &&
-                composer update &&
-                cp .env.example .env &&
+            sh -c "composer update &&
                 php artisan key:generate &&
                 php artisan start &&
                 php -d variables_order=EGPCS artisan octane:start --server=swoole --host=0.0.0.0 --port=9000 --workers=auto --task-workers=1 --watch"
