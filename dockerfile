@@ -24,7 +24,8 @@ RUN docker-php-ext-enable xdebug
 RUN docker-php-ext-enable pdo_mysql
 
 COPY . .
-
+RUN apt-get install -y libzip-dev
 RUN docker-php-ext-install zip
+RUN docker-php-ext-enable zip
 # install dependencies
 RUN composer update
